@@ -1,25 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Button from '../../UI/Button/Button';
-import './CourseInput.css';
+import Button from "../../UI/Button/Button";
+import "./CourseInput.css";
 
-const CourseInput = props => {
-  const [enteredValue, setEnteredValue] = useState('');
-
-  const goalInputChangeHandler = event => {
+const CourseInput = (props) => {
+  // Make the user's input to the form stateful
+  const [enteredValue, setEnteredValue] = useState("");
+  // Update enteredValue when the user types something in the field
+  const goalInputChangeHandler = (event) => {
     setEnteredValue(event.target.value);
   };
-
-  const formSubmitHandler = event => {
+  // On submit, run addGoalHandler in App.js & clear fields
+  const formSubmitHandler = (event) => {
     event.preventDefault();
-    props.onAddGoal(enteredValue);
+    // If input is not valid...
+    if (enteredValue.trim().length === 0) {
+      setValidInput(false); // change the input to false, which induces red text
+      return;
+    }
+    // If input is valid...
+    setValidInput(true); // change the input to false, which induces red text
+    props.onAddGoal(enteredValue); // run addGoal handler
+    setEnteredValue(""); // clear fields
   };
 
+  //————————————————————————————————————————————————————————————————————————————————————————————
+  // Make whether the type of input is valid or not stateful
+  const [validInput, setValidInput] = useState(true);
+  //% CSS Styling
+  let inputLabelCSS = {
+    color: validInput ? "black" : "red",
+  };
+  const inputFieldCSS = {
+    borderColor: validInput ? "black" : "red",
+    background: validInput ? "transparent" : "salmon",
+  };
+  //% JSX
   return (
     <form onSubmit={formSubmitHandler}>
       <div className="form-control">
-        <label>Course Goal</label>
-        <input type="text" onChange={goalInputChangeHandler} />
+        <label style={inputLabelCSS}>Course Goal</label>
+        <input
+          style={inputFieldCSS}
+          type="text"
+          value={enteredValue}
+          onChange={goalInputChangeHandler}
+        />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import ActivateSight from "./ActivateSight";
 import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
 import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
@@ -50,6 +50,7 @@ const App = () => {
         ) // <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
         } */}
       </section>
+      <ActivateSight/>
     </div>
   );
 };
