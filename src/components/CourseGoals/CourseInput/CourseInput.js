@@ -1,11 +1,47 @@
 import React, { useState } from "react";
-
 import Button from "../../UI/Button/Button";
-import "./CourseInput.css";
+import styled from "styled-components";
+const FormControl = styled.div`
+  margin: 0.5rem 0;
+
+  & label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  & input {
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    font: inherit;
+    line-height: 1.5rem;
+    padding: 0 0.25rem;
+  }
+
+  & input:focus {
+    outline: none;
+    background: #fad0ec;
+    border-color: #8b005d;
+  }
+  /* STYLE FOR INVALID */
+  &.invalid input {
+    border-color: red;
+    background: rgb(240, 147, 147);
+  }
+  &.invalid label {
+    color: red;
+  }
+`;
 
 const CourseInput = (props) => {
-  // Make the user's input to the form stateful
+  //~ Make stateful section >>>
+  // user's input to the form
   const [enteredValue, setEnteredValue] = useState("");
+  // whether the type of input is valid or not
+  const [validInput, setValidInput] = useState(true);
+
+  //~ Handler section >>>
   // Update enteredValue when the user types something in the field
   const goalInputChangeHandler = (event) => {
     setEnteredValue(event.target.value);
@@ -23,14 +59,10 @@ const CourseInput = (props) => {
     props.onAddGoal(enteredValue); // run addGoal handler
     setEnteredValue(""); // clear fields
   };
-
   //————————————————————————————————————————————————————————————————————————————————————————————
-  // Make whether the type of input is valid or not stateful
-  const [validInput, setValidInput] = useState(true);
-  //% JSX
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className={`form-control ${validInput ? "" : "invalid"}`}>
+      <FormControl className={validInput ? "" : "invalid"}>
         {/*If the input's not valid, add the "invalid" class */}
         <label>Course Goal</label>
         <input
@@ -38,7 +70,7 @@ const CourseInput = (props) => {
           value={enteredValue}
           onChange={goalInputChangeHandler}
         />
-      </div>
+      </FormControl>
       <Button type="submit">Add Goal</Button>
     </form>
   );
