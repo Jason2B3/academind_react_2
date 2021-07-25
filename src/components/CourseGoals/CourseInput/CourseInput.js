@@ -28,20 +28,14 @@ const CourseInput = (props) => {
   // Make whether the type of input is valid or not stateful
   const [validInput, setValidInput] = useState(true);
   //% CSS Styling
-  let inputLabelCSS = {
-    color: validInput ? "black" : "red",
-  };
-  const inputFieldCSS = {
-    borderColor: validInput ? "black" : "red",
-    background: validInput ? "transparent" : "salmon",
-  };
+
   //% JSX
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className="form-control">
-        <label style={inputLabelCSS}>Course Goal</label>
+      <div className={`form-control ${validInput ? "" : "invalid"}`}>
+        {/*If the input's not valid, add the "invalid" class */}
+        <label>Course Goal</label>
         <input
-          style={inputFieldCSS}
           type="text"
           value={enteredValue}
           onChange={goalInputChangeHandler}
