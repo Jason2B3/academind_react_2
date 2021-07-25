@@ -27,8 +27,6 @@ const CourseInput = (props) => {
   //————————————————————————————————————————————————————————————————————————————————————————————
   // Make whether the type of input is valid or not stateful
   const [validInput, setValidInput] = useState(true);
-  //% CSS Styling
-
   //% JSX
   return (
     <form onSubmit={formSubmitHandler}>
