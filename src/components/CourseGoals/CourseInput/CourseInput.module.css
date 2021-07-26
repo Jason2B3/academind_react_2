@@ -1,14 +1,14 @@
-.form-control {
+.button {
   margin: 0.5rem 0;
 }
 
-.form-control label {
+.button label {
   font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
 }
 
-.form-control input {
+.button input {
   display: block;
   width: 100%;
   border: 1px solid #ccc;
@@ -17,16 +17,16 @@
   padding: 0 0.25rem;
 }
 
-.form-control input:focus {
+.button input:focus {
   outline: none;
   background: #fad0ec;
   border-color: #8b005d;
 }
 /* STYLE FOR INVALID */
-.form-control.invalid input{
+.button.invalid input{
 border-color:red;
 background:rgb(240, 147, 147)
 }
-.form-control.invalid label{
+.button.invalid label{
   color:red;
 }
