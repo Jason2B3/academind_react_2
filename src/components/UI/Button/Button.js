@@ -20,9 +20,10 @@ const StyledButton = styled.button`
     border-color: #ac0e77;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
   }
-  width: 100%;
+  // SET UP MEDIA QUERIES BELOW
+  width: 100%; //# make width 100% up until 768px;
   @media (min-width: 768px) {
-    width: auto;
+    width: auto; //# make width not 100% past 768px
   }
 `;
 
